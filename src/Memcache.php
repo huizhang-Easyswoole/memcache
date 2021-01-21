@@ -9,6 +9,7 @@
 namespace Huizhang\Memcache;
 
 use Huizhang\Memcache\CommandHandler\Add;
+use Huizhang\Memcache\CommandHandler\Replace;
 use Huizhang\Memcache\CommandHandler\Set;
 
 class Memcache
@@ -33,9 +34,10 @@ class Memcache
         return $addHandler->handler($key, $value, $exptime);
     }
 
-    public function replace()
+    public function replace(string $key, string $value, int $exptime = 0)
     {
-
+        $addHandler = new Replace($this->config);
+        return $addHandler->handler($key, $value, $exptime);
     }
 
     public function prepend()

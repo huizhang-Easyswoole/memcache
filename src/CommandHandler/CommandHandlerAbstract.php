@@ -1,4 +1,10 @@
 <?php
+/**
+ * @CreateTime:   2021/1/22 1:10 上午
+ * @Author:       huizhang  <2788828128@qq.com>
+ * @Copyright:    copyright(2020) Easyswoole all rights reserved
+ * @Description:  Command handler abstract
+ */
 
 namespace Huizhang\Memcache\CommandHandler;
 

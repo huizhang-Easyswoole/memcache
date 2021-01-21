@@ -3,7 +3,7 @@
  * @CreateTime:   2021/1/22 1:10 上午
  * @Author:       huizhang  <2788828128@qq.com>
  * @Copyright:    copyright(2020) Easyswoole all rights reserved
- * @Description:  set handler
+ * @Description:  replace handler
  */
 
 namespace Huizhang\Memcache\CommandHandler;
@@ -11,10 +11,10 @@ namespace Huizhang\Memcache\CommandHandler;
 use Huizhang\Memcache\Core\ClientResponse;
 use Huizhang\Memcache\Core\MemcacheResponse;
 
-class Set extends CommandHandlerAbstract
+class Replace extends CommandHandlerAbstract
 {
 
-    protected $commandName = 'set';
+    protected $commandName = 'replace';
 
     public function handler(...$data): MemcacheResponse
     {
@@ -51,3 +51,4 @@ class Set extends CommandHandlerAbstract
     }
 
 }
+
