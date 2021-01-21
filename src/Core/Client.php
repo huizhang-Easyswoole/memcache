@@ -31,6 +31,7 @@ class Client
     {
         $response = new ClientResponse();
         $result = $this->client->recv();
+        var_dump($result);
         if (empty($result)) {
             $response->setStatus(ClientResponse::STATUS_TIMEOUT);
             $response->setMsg($this->client->errMsg);

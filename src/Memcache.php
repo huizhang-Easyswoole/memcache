@@ -8,6 +8,7 @@
 
 namespace Huizhang\Memcache;
 
+use Huizhang\Memcache\CommandHandler\Add;
 use Huizhang\Memcache\CommandHandler\Set;
 
 class Memcache
@@ -26,9 +27,10 @@ class Memcache
         return $setHandler->handler($key, $value, $exptime);
     }
 
-    public function add()
+    public function add(string $key, string $value, int $exptime = 0)
     {
-
+        $addHandler = new Add($this->config);
+        return $addHandler->handler($key, $value, $exptime);
     }
 
     public function replace()

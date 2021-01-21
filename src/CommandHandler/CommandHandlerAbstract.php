@@ -4,6 +4,7 @@ namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Config;
 use Huizhang\Memcache\Core\Client;
+use Huizhang\Memcache\Core\MemcacheResponse;
 
 abstract class CommandHandlerAbstract
 {
@@ -25,7 +26,7 @@ abstract class CommandHandlerAbstract
         );
     }
 
-    abstract public function handler(...$value);
+    abstract public function handler(...$data): MemcacheResponse;
 
 }
 
