@@ -9,6 +9,9 @@
 namespace Huizhang\Memcache;
 
 use Huizhang\Memcache\CommandHandler\Add;
+use Huizhang\Memcache\CommandHandler\Append;
+use Huizhang\Memcache\CommandHandler\Cas;
+use Huizhang\Memcache\CommandHandler\Prepend;
 use Huizhang\Memcache\CommandHandler\Replace;
 use Huizhang\Memcache\CommandHandler\Set;
 
@@ -24,25 +27,38 @@ class Memcache
 
     public function set(string $key, string $value, int $exptime = 0)
     {
-        $setHandler = new Set($this->config);
-        return $setHandler->handler($key, $value, $exptime);
+        $command = new Set($this->config);
+        return $command->handler($key, $value, $exptime);
     }
 
     public function add(string $key, string $value, int $exptime = 0)
     {
-        $addHandler = new Add($this->config);
-        return $addHandler->handler($key, $value, $exptime);
+        $command = new Add($this->config);
+        return $command->handler($key, $value, $exptime);
     }
 
     public function replace(string $key, string $value, int $exptime = 0)
     {
-        $addHandler = new Replace($this->config);
-        return $addHandler->handler($key, $value, $exptime);
+        $command = new Replace($this->config);
+        return $command->handler($key, $value, $exptime);
     }
 
-    public function prepend()
+    public function append(string $key, string $value, int $exptime = 0)
     {
+        $command = new Append($this->config);
+        return $command->handler($key, $value, $exptime);
+    }
 
+    public function prepend(string $key, string $value, int $exptime = 0)
+    {
+        $command = new Prepend($this->config);
+        return $command->handler($key, $value, $exptime);
+    }
+
+    public function cas(string $key, string $value, int $token, int $exptime=0)
+    {
+        $command = new Cas($this->config);
+        return $command->handler($key, $value, $token, $exptime);
     }
 
     public function get()
