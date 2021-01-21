@@ -9,9 +9,9 @@ class Config
 
     use Singleton;
 
-    protected $host = '127.0.0.1';
-    protected $port = '11211';
-    protected $timeout = 3;
+    private $host = '127.0.0.1';
+    private $port = '11211';
+    private $timeout = 3;
 
     public function getHost()
     {

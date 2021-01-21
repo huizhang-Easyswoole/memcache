@@ -8,7 +8,9 @@
 
 namespace Huizhang\MemcacheClient;
 
-class MemcacheClient
+use Huizhang\MemcacheClient\CommandHandler\Set;
+
+class Memcache
 {
 
     private $config;
@@ -20,24 +22,8 @@ class MemcacheClient
 
     public function set(string $key, string $value, int $exptime = 0)
     {
-        $tcpClient = $this->getTcpClient();
-        $bytes = strlen($value);
-        $command = "set {$key} 0 {$exptime} {$bytes} \r\n";
-        if ($tcpClient->sendCommand($command)) {
-            $res = $tcpClient->sendCommand("888\r\n");
-            if ($res) {
-                $tcpClient->recv();
-            }
-        }
-    }
-
-    private function getTcpClient()
-    {
-        return new TcpClient(
-            $this->config->getHost()
-            , $this->config->getPort()
-            , $this->config->getTimeout()
-        );
+        $setHandler = new Set($this->config);
+        return $setHandler->handler($key, $value, $exptime);
     }
 
     public function add()
