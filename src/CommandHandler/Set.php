@@ -1,8 +1,8 @@
 <?php
 
-namespace Huizhang\MemcacheClient\CommandHandler;
+namespace Huizhang\Memcache\CommandHandler;
 
-use Huizhang\MemcacheClient\Core\ClientResponse;
+use Huizhang\Memcache\Core\ClientResponse;
 
 class Set extends CommandHandlerAbstract
 {

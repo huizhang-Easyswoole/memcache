@@ -1,6 +1,6 @@
 <?php
 
-namespace Huizhang\MemcacheClient\Exception;
+namespace Huizhang\Memcache\Exception;
 
 class Exception extends \Exception
 {

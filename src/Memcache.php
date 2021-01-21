@@ -6,9 +6,9 @@
  * @Description:  mcq客户端
  */
 
-namespace Huizhang\MemcacheClient;
+namespace Huizhang\Memcache;
 
-use Huizhang\MemcacheClient\CommandHandler\Set;
+use Huizhang\Memcache\CommandHandler\Set;
 
 class Memcache
 {

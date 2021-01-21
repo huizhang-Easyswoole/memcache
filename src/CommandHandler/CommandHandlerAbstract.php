@@ -1,9 +1,9 @@
 <?php
 
-namespace Huizhang\MemcacheClient\CommandHandler;
+namespace Huizhang\Memcache\CommandHandler;
 
-use Huizhang\MemcacheClient\Config;
-use Huizhang\MemcacheClient\Core\Client;
+use Huizhang\Memcache\Config;
+use Huizhang\Memcache\Core\Client;
 
 abstract class CommandHandlerAbstract
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Huizhang\MemcacheClient\Core;
+namespace Huizhang\Memcache\Core;
 
 use Swoole\Coroutine\Client as CoroutineClient;
 

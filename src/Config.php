@@ -1,6 +1,6 @@
 <?php
 
-namespace Huizhang\MemcacheClient;
+namespace Huizhang\Memcache;
 
 use EasySwoole\Component\Singleton;
 
