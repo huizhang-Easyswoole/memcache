@@ -13,6 +13,7 @@ use Huizhang\Memcache\CommandHandler\Append;
 use Huizhang\Memcache\CommandHandler\Cas;
 use Huizhang\Memcache\CommandHandler\Decr;
 use Huizhang\Memcache\CommandHandler\Delete;
+use Huizhang\Memcache\CommandHandler\FlushAll;
 use Huizhang\Memcache\CommandHandler\Get;
 use Huizhang\Memcache\CommandHandler\Gets;
 use Huizhang\Memcache\CommandHandler\Incr;
@@ -126,7 +127,8 @@ class Memcache
 
     public function flushAll()
     {
-
+        $command = new FlushAll($this->config);
+        return $command->handler();
     }
 
 }
