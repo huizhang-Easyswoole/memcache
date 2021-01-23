@@ -30,7 +30,7 @@ abstract class CommandHandlerAbstract
         if (count($services) === 0) {
             throw new Exception('Please set services!');
         }
-        $service = $services[random_int(0, count($services)) - 1];
+        $service = $services[random_int(0, count($services) - 1)];
         [$host, $port, $timeout] = $service;
         return new Client($host, $port, $timeout);
     }

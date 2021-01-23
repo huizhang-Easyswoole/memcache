@@ -125,10 +125,10 @@ class Memcache
         return $command->handler();
     }
 
-    public function flushAll()
+    public function flushAll(int $time = null)
     {
         $command = new FlushAll($this->config);
-        return $command->handler();
+        return $command->handler($time);
     }
 
 }

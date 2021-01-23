@@ -18,7 +18,13 @@ class FlushAll extends CommandHandlerAbstract
 
     public function handler(...$data): Response
     {
-        $command = "{$this->commandName} \r\n";
+        [$time] = $data;
+        if (is_numeric($time)) {
+            $time = ' ' . $time;
+        } else {
+            $time = '';
+        }
+        $command = sprintf("%s%s\r\n", $this->commandName, $time);
         $client = $this->getClient();
         $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
