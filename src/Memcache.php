@@ -20,6 +20,7 @@ use Huizhang\Memcache\CommandHandler\Prepend;
 use Huizhang\Memcache\CommandHandler\Replace;
 use Huizhang\Memcache\CommandHandler\Set;
 use Huizhang\Memcache\CommandHandler\Stats;
+use Huizhang\Memcache\CommandHandler\StatsSizes;
 use Huizhang\Memcache\CommandHandler\StatsSlabs;
 
 class Memcache
@@ -106,7 +107,6 @@ class Memcache
 
     public function statsItems()
     {
-
     }
 
     public function statsSlabs()
@@ -117,7 +117,8 @@ class Memcache
 
     public function statsSizes()
     {
-
+        $command = new StatsSizes($this->config);
+        return $command->handler();
     }
 
     public function flushAll()
