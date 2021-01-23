@@ -11,6 +11,7 @@ namespace Huizhang\Memcache\CommandHandler;
 use Huizhang\Memcache\Config;
 use Huizhang\Memcache\Core\Client;
 use Huizhang\Memcache\Core\Response;
+use Huizhang\Memcache\Exception\Exception;
 
 abstract class CommandHandlerAbstract
 {
@@ -26,6 +27,9 @@ abstract class CommandHandlerAbstract
     protected function getClient()
     {
         $services = $this->config->getServers();
+        if (count($services) === 0) {
+            throw new Exception('Please set services!');
+        }
         $service = $services[random_int(0, count($services)) - 1];
         [$host, $port, $timeout] = $service;
         return new Client($host, $port, $timeout);
