@@ -11,6 +11,7 @@ namespace Huizhang\Memcache;
 use Huizhang\Memcache\CommandHandler\Add;
 use Huizhang\Memcache\CommandHandler\Append;
 use Huizhang\Memcache\CommandHandler\Cas;
+use Huizhang\Memcache\CommandHandler\Delete;
 use Huizhang\Memcache\CommandHandler\Get;
 use Huizhang\Memcache\CommandHandler\Gets;
 use Huizhang\Memcache\CommandHandler\Prepend;
@@ -75,9 +76,10 @@ class Memcache
         return $command->handler(...$keys);
     }
 
-    public function delete()
+    public function delete(string $key)
     {
-
+        $command = new Delete($this->config);
+        return $command->handler($key);
     }
 
     public function incr()
