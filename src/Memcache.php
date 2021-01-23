@@ -11,6 +11,8 @@ namespace Huizhang\Memcache;
 use Huizhang\Memcache\CommandHandler\Add;
 use Huizhang\Memcache\CommandHandler\Append;
 use Huizhang\Memcache\CommandHandler\Cas;
+use Huizhang\Memcache\CommandHandler\Get;
+use Huizhang\Memcache\CommandHandler\Gets;
 use Huizhang\Memcache\CommandHandler\Prepend;
 use Huizhang\Memcache\CommandHandler\Replace;
 use Huizhang\Memcache\CommandHandler\Set;
@@ -55,20 +57,22 @@ class Memcache
         return $command->handler($key, $value, $exptime);
     }
 
-    public function cas(string $key, string $value, int $token, int $exptime=0)
+    public function cas(string $key, string $value, int $token, int $exptime = 0)
     {
         $command = new Cas($this->config);
         return $command->handler($key, $value, $token, $exptime);
     }
 
-    public function get()
+    public function get(string ...$keys)
     {
-
+        $command = new Get($this->config);
+        return $command->handler(...$keys);
     }
 
-    public function gets()
+    public function gets(string ...$keys)
     {
-
+        $command = new Gets($this->config);
+        return $command->handler(...$keys);
     }
 
     public function delete()
