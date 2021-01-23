@@ -8,14 +8,14 @@
 namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Core\ClientResponse;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 class Prepend extends CommandHandlerAbstract
 {
 
     protected $commandName = 'append';
 
-    public function handler(...$data): MemcacheResponse
+    public function handler(...$data): Response
     {
         [$key, $value, $expire] = $data;
         $command = sprintf(
@@ -26,14 +26,14 @@ class Prepend extends CommandHandlerAbstract
             , strlen($value)
         );
         $client = $this->getClient();
-        $response = new MemcacheResponse(MemcacheResponse::STATUS_FAILED);
+        $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
             $command = sprintf("%s\r\n", $value);
             if ($client->sendCommand($command)) {
                 $result = $client->recv();
                 if ($result->getStatus() === ClientResponse::STATUS_OK) {
                     if ($result->getData() === 'STORED') {
-                        $response->setStatus(MemcacheResponse::STATUS_SUCCESS);
+                        $response->setStatus(Response::STATUS_SUCCESS);
                     } else {
                         $response->setErrMsg($result->getData());
                     }

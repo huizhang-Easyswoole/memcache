@@ -9,19 +9,18 @@
 namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Core\ClientResponse;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 class FlushAll extends CommandHandlerAbstract
 {
 
     protected $commandName = 'flush_all';
 
-    public function handler(...$data): MemcacheResponse
+    public function handler(...$data): Response
     {
-        [$key] = $data;
-        $command = "{$this->commandName} {$key} \r\n";
+        $command = "{$this->commandName} \r\n";
         $client = $this->getClient();
-        $response = new MemcacheResponse(MemcacheResponse::STATUS_FAILED);
+        $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
             $recv = $client->recv();
             if ($recv->getStatus() !== ClientResponse::STATUS_OK) {

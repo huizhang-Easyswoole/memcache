@@ -2,7 +2,7 @@
 
 namespace Huizhang\Memcache\Core;
 
-class MemcacheResponse
+class Response
 {
 
     public const STATUS_SUCCESS = 1;
@@ -31,7 +31,7 @@ class MemcacheResponse
         return $this;
     }
 
-    public function setData($data): MemcacheResponse
+    public function setData($data): Response
     {
         $this->data = $data;
         return $this;

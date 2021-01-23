@@ -10,7 +10,7 @@ namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Config;
 use Huizhang\Memcache\Core\Client;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 abstract class CommandHandlerAbstract
 {
@@ -25,14 +25,13 @@ abstract class CommandHandlerAbstract
 
     protected function getClient()
     {
-        return new Client(
-            $this->config->getHost()
-            , $this->config->getPort()
-            , $this->config->getTimeout()
-        );
+        $services = $this->config->getServers();
+        $service = $services[random_int(0, count($services)) - 1];
+        [$host, $port, $timeout] = $service;
+        return new Client($host, $port, $timeout);
     }
 
-    abstract public function handler(...$data): MemcacheResponse;
+    abstract public function handler(...$data): Response;
 
 }
 

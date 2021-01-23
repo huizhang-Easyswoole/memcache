@@ -9,24 +9,24 @@
 namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Core\ClientResponse;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 class StatsSizes extends CommandHandlerAbstract
 {
 
     protected $commandName = 'stats sizes';
 
-    public function handler(...$data): MemcacheResponse
+    public function handler(...$data): Response
     {
         $command = "{$this->commandName}\r\n";
         $client = $this->getClient();
-        $response = new MemcacheResponse(MemcacheResponse::STATUS_FAILED);
+        $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
             $result = [];
             while (true) {
                 $recv = $client->recv();
                 if ($recv->getData() === 'END') {
-                    $response->setStatus(MemcacheResponse::STATUS_SUCCESS);
+                    $response->setStatus(Response::STATUS_SUCCESS);
                     $response->setData($result);
                     break;
                 }

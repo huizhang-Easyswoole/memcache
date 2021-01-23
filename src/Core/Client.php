@@ -2,7 +2,7 @@
 
 namespace Huizhang\Memcache\Core;
 
-use http\Client\Response;
+use Huizhang\Memcache\Exception\Exception;
 use Swoole\Coroutine\Client as CoroutineClient;
 
 class Client
@@ -18,12 +18,14 @@ class Client
             'package_eof' => "\r\n",
             'package_max_length' => 1024 * 1024 * 2
         ]);
-        $this->client->connect($host, $port, $timeout);
+        if (!$this->client->connect($host, $port, $timeout)) {
+            $connectStr = "{$host}:{$port}:{$timeout}";
+            throw new Exception("Connect to Memcache {$connectStr} failed: {$this->client->errMsg}");
+        }
     }
 
     public function sendCommand(string $command)
     {
-        var_dump($command);
         $res = $this->client->send($command);
         return strlen($command) === $res;
     }

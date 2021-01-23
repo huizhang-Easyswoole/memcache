@@ -8,19 +8,19 @@
 namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Core\ClientResponse;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 class Decr extends CommandHandlerAbstract
 {
 
     protected $commandName = 'decr';
 
-    public function handler(...$data): MemcacheResponse
+    public function handler(...$data): Response
     {
         [$key, $value] = $data;
         $command = "{$this->commandName} {$key} {$value}\r\n";
         $client = $this->getClient();
-        $response = new MemcacheResponse(MemcacheResponse::STATUS_FAILED);
+        $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
             $recv = $client->recv();
             if ($recv->getStatus() !== ClientResponse::STATUS_OK) {

@@ -3,7 +3,7 @@
  * @CreateTime:   2021/1/20 11:53 下午
  * @Author:       huizhang  <2788828128@qq.com>
  * @Copyright:    copyright(2020) Easyswoole all rights reserved
- * @Description:  mcq客户端
+ * @Description:  memcache客户端
  */
 
 namespace Huizhang\Memcache;

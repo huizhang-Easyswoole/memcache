@@ -9,14 +9,14 @@
 namespace Huizhang\Memcache\CommandHandler;
 
 use Huizhang\Memcache\Core\ClientResponse;
-use Huizhang\Memcache\Core\MemcacheResponse;
+use Huizhang\Memcache\Core\Response;
 
 class Get extends CommandHandlerAbstract
 {
 
     protected $commandName = 'get';
 
-    public function handler(...$data): MemcacheResponse
+    public function handler(...$data): Response
     {
         $command = [$this->commandName];
         foreach ($data as $key) {
@@ -24,7 +24,7 @@ class Get extends CommandHandlerAbstract
         }
         $command = implode(' ', $command) . "\r\n";
         $client = $this->getClient();
-        $response = new MemcacheResponse(MemcacheResponse::STATUS_FAILED);
+        $response = new Response(Response::STATUS_FAILED);
         if ($client->sendCommand($command)) {
             $result = [];
             $key = null;
@@ -35,7 +35,7 @@ class Get extends CommandHandlerAbstract
                     break;
                 }
                 if ($recv->getData() === 'END') {
-                    $response->setStatus(MemcacheResponse::STATUS_SUCCESS);
+                    $response->setStatus(Response::STATUS_SUCCESS);
                     $response->setData($result);
                     break;
                 }
