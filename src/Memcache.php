@@ -14,6 +14,7 @@ use Huizhang\Memcache\CommandHandler\Cas;
 use Huizhang\Memcache\CommandHandler\Delete;
 use Huizhang\Memcache\CommandHandler\Get;
 use Huizhang\Memcache\CommandHandler\Gets;
+use Huizhang\Memcache\CommandHandler\Incr;
 use Huizhang\Memcache\CommandHandler\Prepend;
 use Huizhang\Memcache\CommandHandler\Replace;
 use Huizhang\Memcache\CommandHandler\Set;
@@ -82,9 +83,10 @@ class Memcache
         return $command->handler($key);
     }
 
-    public function incr()
+    public function incr(string $key, int $value = 1)
     {
-
+        $command = new Incr($this->config);
+        return $command->handler($key, $value);
     }
 
     public function decr()
