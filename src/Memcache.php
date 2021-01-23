@@ -11,6 +11,7 @@ namespace Huizhang\Memcache;
 use Huizhang\Memcache\CommandHandler\Add;
 use Huizhang\Memcache\CommandHandler\Append;
 use Huizhang\Memcache\CommandHandler\Cas;
+use Huizhang\Memcache\CommandHandler\Decr;
 use Huizhang\Memcache\CommandHandler\Delete;
 use Huizhang\Memcache\CommandHandler\Get;
 use Huizhang\Memcache\CommandHandler\Gets;
@@ -89,9 +90,10 @@ class Memcache
         return $command->handler($key, $value);
     }
 
-    public function decr()
+    public function decr(string $key, int $value = 1)
     {
-
+        $command = new Decr($this->config);
+        return $command->handler($key, $value);
     }
 
     public function stats()
