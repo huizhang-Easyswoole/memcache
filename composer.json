@@ -1,0 +1,18 @@
+{
+  "name": "huizhang/memcache",
+  "description": "",
+  "type": "library",
+  "keywords": [
+    "swoole",
+    "memcache"
+  ],
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Huizhang\\Memcache\\": "src/"
+    }
+  },
+  "require": {
+    "ext-swoole": ">=4.4.0"
+  }
+}
